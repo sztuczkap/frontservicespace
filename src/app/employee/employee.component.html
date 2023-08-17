@@ -17,3 +17,58 @@
     </li>
   </ul>
 </div>
+
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-12 mb-3 mb-lg-5">
+      <div class="position-relative card table-nowrap table-card">
+        <div class="card-header align-items-center">
+          <h5 class="mb-0">Pracownicy</h5>
+          <p class="mb-0 small text-muted">Ilość pracowników: <b>{{employees?.length}}</b></p>
+          <p align="right"><a href="#!" class="btn btn-outline-success">Dodaj pracownika</a></p>
+        </div>
+        <div class="table-responsive">
+          <table class="table mb-0">
+            <thead class="small text-uppercase bg-body text-muted">
+            <tr>
+              <th>ID Pracownika</th>
+              <th>Nazwisko i imię</th>
+              <th>Stanowisko</th>
+              <th>Akcja</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let employee of employees" class="align-middle">
+              <td>#{{employee.id}}</td>
+              <td>{{employee.lastName}} {{employee.name}}</td>
+              <td>{{employee.position}}</td>
+              <td>
+
+<!--                <a href="#!" class="btn btn btn-light" data-toggle="modal" data-target="#service-form-modal">Edytuj</a>-->
+<!--                <a href="#!" class="btn btn btn-light">Usuń</a>-->
+                <a href="#" class="table-link">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+									</span>
+                </a>
+                <a href="#" class="table-link danger">
+									<span class="fa-stack">
+										<i class="fa fa-square fa-stack-2x"></i>
+										<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+									</span>
+                </a>
+
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer text-end">
+          <a href="#!" class="btn btn-outline-success">Dodaj pracownika</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

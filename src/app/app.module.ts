@@ -9,10 +9,11 @@ import {HttpClientModule} from "@angular/common/http";
 import {ClientComponent} from './client/client.component';
 import {OrderComponent} from './order/order.component';
 import {NewOrderComponent} from './new-order/new-order.component';
+import {FormsModule} from "@angular/forms";
 
 const appRoute: Routes = [
-  // {path: '', component: ServiceComponent},
-  // {path: '', redirectTo: 'service', pathMatch: 'full'},
+  // {path: '', component: OrderComponent},
+  {path: '', redirectTo: 'order', pathMatch: 'full'},
   {path: 'new-order', component: NewOrderComponent},
   {path: 'order', component: OrderComponent},
   {path: 'client', component: ClientComponent},
@@ -32,7 +33,8 @@ const appRoute: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoute)
+    RouterModule.forRoot(appRoute),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

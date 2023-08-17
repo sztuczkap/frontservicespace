@@ -3,3 +3,10 @@
 @import 'https://getbootstrap.com/docs/5.3/assets/css/docs.css';
 /*TABLE*/
 @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+/*EMPLOYEE*/
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';
+
+ul {
+  justify-content: center;
+  display: flex;
+}
