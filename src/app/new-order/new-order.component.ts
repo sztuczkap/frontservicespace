@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Employee} from "../employee/employee.service";
+import {} from "../employee/employee.service";
 import {NgForm} from "@angular/forms";
+import {Employee} from "../employee/employee.model";
 
 @Component({
   selector: 'app-new-order',
@@ -9,16 +10,10 @@ import {NgForm} from "@angular/forms";
 })
 export class NewOrderComponent implements OnInit {
 
-  model: Partial<Employee>;
-
   constructor() {
   }
-
   ngOnInit(): void {
 
   }
 
-  send() {
-    console.log(this.model)
-  }
 }
