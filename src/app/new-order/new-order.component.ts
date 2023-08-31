@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {} from "../employee/employee.service";
-import {NgForm} from "@angular/forms";
-import {Employee} from "../employee/employee.model";
+
 
 @Component({
   selector: 'app-new-order',

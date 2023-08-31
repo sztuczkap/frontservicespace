@@ -42,7 +42,7 @@ export class ServiceCreateComponent {
       next: (res: any) => {
         console.log(res, 'response')
         this.isLoading = false;
-        alert(res.message);
+        // alert(res.message);
         this.serviceName = '';
         this.repairTime = '';
         this.guarantee = '';

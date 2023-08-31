@@ -1,0 +1,41 @@
+<div>
+  <div class="continer mt-5">
+    <div class="card">
+      <div class="card-header">
+        <h4>Edycja pracownika
+          <a routerLink="/employee" class="btn btn-danger float-end">Wróć</a>
+        </h4>
+      </div>
+      <div class="card-body">
+        <div *ngIf="isLoading; else elseForm">
+          <app-loader :title="loadingTitle"></app-loader>
+        </div>
+        <ng-template #elseForm>
+          <form (ngSubmit)="updateEmployee()">
+            <div *ngIf="employee">
+              <div class="mb-3">
+                <label>Imię</label>
+                <input type="text" [(ngModel)]="employee.name" name="name" class="form-control" required>
+                <span class="text-danger" *ngIf="!employee.name">Pole jest wymagane. Podaj imię pracownika.</span>
+              </div>
+              <div class="mb-3">
+                <label>Nazwisko</label>
+                <input type="text" [(ngModel)]="employee.lastName" name="lastName" class="form-control" required>
+                <span class="text-danger" *ngIf="!employee.lastName">Pole jest wymagane. Podaj nazwisko pracownika.</span>
+              </div>
+              <div class="mb-3">
+                <label>Stanowisko</label>
+                <input type="text" [(ngModel)]="employee.position" name="position" class="form-control" required>
+                <span class="text-danger" *ngIf="!employee.position">Pole jest wymagane. Podaj stanowisko pracownika.</span>
+              </div></div>
+
+            <div class="mb-3">
+              <button type="submit" class="btn btn-primary">Zaktualizuj</button>
+            </div>
+          </form>
+        </ng-template>
+
+      </div>
+    </div>
+  </div>
+</div>

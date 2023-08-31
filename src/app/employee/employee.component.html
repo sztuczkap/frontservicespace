@@ -26,11 +26,15 @@
           <h5 class="mb-0">Pracownicy</h5>
           <p class="mb-0 small text-muted">Ilość pracowników: <b>{{employees?.length}}</b></p>
           <p align="right">
-            <button class="btn btn-outline-success" (click)="openAddEmployeeDialog()">Dodaj pracownika</button>
+            <a href="employee-create" class="btn btn-outline-success" >Dodaj pracownika</a>
           </p>
 
         </div>
         <div class="table-responsive">
+          <div *ngIf="isLoading; else elseTableBlock">
+            <app-loader></app-loader>
+          </div>
+          <ng-template #elseTableBlock>
           <table class="table mb-0">
             <thead class="small text-uppercase bg-body text-muted">
             <tr>
@@ -46,13 +50,13 @@
               <td>{{emp.lastName}} {{emp.name}}</td>
               <td>{{emp.position}}</td>
               <td>
-                <a (click)="openEditEmployeeDialog(emp)" class="table-link">
+                <a routerLink="/employees/{{emp.id}}" class="table-link">
                     <span class="fa-stack">
                       <i class="fa fa-square fa-stack-2x"></i>
                       <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
                     </span>
                 </a>
-                <a (click)="deleteEmployee(emp.id)" class="table-link danger">
+                <a type="button" (click)="deleteEmployee($event, emp.id)" class="table-link danger">
 									<span class="fa-stack">
 										<i class="fa fa-square fa-stack-2x"></i>
 										<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
@@ -63,11 +67,10 @@
             </tr>
             </tbody>
           </table>
+          </ng-template>
         </div>
         <div class="card-footer text-end">
-          <p align="right">
-            <button class="btn btn-outline-success" (click)="openAddEmployeeDialog()">Dodaj pracownika</button>
-          </p>
+            <a href="employee-create" class="btn btn-outline-success" >Dodaj pracownika</a>
         </div>
       </div>
     </div>
