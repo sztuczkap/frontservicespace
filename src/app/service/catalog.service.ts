@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environment/environment";
 import {Observable} from "rxjs";
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +12,22 @@ export class CatalogService {
   private apiServerUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {
+  }
+
+  deleteService(serviceId: Number){
+    return this.http.delete(`${this.apiServerUrl}/catalog/${serviceId}`)
+  }
+
+  updateService(inputData: object, serviceId: Number) {
+    return this.http.put(`${this.apiServerUrl}/catalog/${serviceId}`, inputData)
+  }
+
+  getService(serviceId: number) {
+    return this.http.get(`${this.apiServerUrl}/catalog/${serviceId}`)
+  }
+
+  saveService(inputData: object) {
+    return this.http.post(`${this.apiServerUrl}/catalog`, inputData)
   }
 
   public getCatalogService(): Observable<Service[]> {
@@ -28,4 +45,3 @@ export interface Service {
   comment: string;
   symptoms: string;
 }
-

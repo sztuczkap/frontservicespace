@@ -27,7 +27,7 @@
         <div class="card-header align-items-center">
           <h5 class="mb-0">Klienci</h5>
           <p class="mb-0 small text-muted">Ilość klilentów: <b>{{clients?.length}}</b></p>
-          <p align="right"><a href="#!" class="btn btn-outline-success">Dodaj klienta</a></p>
+<!--          <p align="right"><a href="#!" class="btn btn-outline-success">Dodaj klienta</a></p>-->
         </div>
         <div class="table-responsive">
           <table class="table mb-0">
@@ -49,18 +49,18 @@
               <td>
                 <!--                <a href="#!" class="btn btn btn-light" data-toggle="modal" data-target="#service-form-modal">Edytuj</a>-->
                 <!--                <a href="#!" class="btn btn btn-light">Usuń</a>-->
-                <a href="#" class="table-link">
+                <a routerLink="/clients/{{client.id}}" class="table-link">
 									<span class="fa-stack">
 										<i class="fa fa-square fa-stack-2x"></i>
 										<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
 									</span>
                 </a>
-                <a href="#" class="table-link danger">
-									<span class="fa-stack">
-										<i class="fa fa-square fa-stack-2x"></i>
-										<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-									</span>
-                </a>
+<!--                <a href="#" class="table-link danger">-->
+<!--									<span class="fa-stack">-->
+<!--										<i class="fa fa-square fa-stack-2x"></i>-->
+<!--										<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>-->
+<!--									</span>-->
+<!--                </a>-->
 
               </td>
             </tr>
@@ -68,7 +68,7 @@
           </table>
         </div>
         <div class="card-footer text-end">
-          <a href="#!" class="btn btn-outline-success">Dodaj klienta</a>
+<!--          <a href="#!" class="btn btn-outline-success">Dodaj klienta</a>-->
         </div>
       </div>
     </div>

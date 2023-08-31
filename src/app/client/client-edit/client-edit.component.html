@@ -1,0 +1,40 @@
+<div>
+  <div class="continer mt-5">
+    <div class="card">
+      <div class="card-header">
+        <h4>Edycja klienta
+          <a routerLink="/client" class="btn btn-danger float-end">Wróć</a>
+        </h4>
+      </div>
+      <div class="card-body">
+        <div *ngIf="isLoading; else elseForm">
+          <app-loader :title="loadingTitle"></app-loader>
+        </div>
+        <ng-template #elseForm>
+          <form (ngSubmit)="updateClient()">
+            <div *ngIf="client">
+              <div class="mb-3">
+                <label>Adres email</label>
+                <input type="text" [(ngModel)]="client.email" name="email" class="form-control" required>
+                <span class="text-danger" *ngIf="client.email">Pole jest wymagane. Podaj email klienta.</span>
+              </div>
+              <div class="mb-3">
+                <label>Imię i nazwisko</label>
+                <input type="text" [(ngModel)]="client.name" name="name" class="form-control" required>
+                <span class="text-danger" *ngIf="client.name">Pole jest wymagane. Podaj Imię i nazwisko klienta.</span>
+              </div>
+              <div class="mb-3">
+                <label>Numer telefonu</label>
+                <input type="text" [(ngModel)]="client.phone" name="phone" class="form-control" required>
+                <span class="text-danger" *ngIf="client.phone">Pole jest wymagane. Podaj nr telefonu klienta.</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <button type="submit" class="btn btn-primary">Zaktualizuj</button>
+            </div>
+          </form>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

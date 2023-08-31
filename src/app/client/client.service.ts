@@ -13,6 +13,14 @@ export class ClientService {
   constructor(private http: HttpClient) {
   }
 
+  updateClient(inputData: object, clientId: Number) {
+    return this.http.put(`${this.apiServerUrl}/clients/${clientId}`, inputData)
+  }
+
+  getClient(clientId: any) {
+    return this.http.get(`${this.apiServerUrl}/clients/${clientId}`)
+  }
+
   public getCatalogClient(): Observable<Client[]> {
     return this.http.get<Client[]>(`${this.apiServerUrl}/clients`)
   }

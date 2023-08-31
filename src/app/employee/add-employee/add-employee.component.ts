@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
+import { Router } from '@angular/router';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 import {EmployeeService} from "../employee.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -14,8 +16,11 @@ export class AddEmployeeComponent {
   employeeForm: FormGroup;
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: Employee,
     private fb: FormBuilder,
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
+    private router: Router,
+    private dialogRef: MatDialogRef<AddEmployeeComponent>
   ) {
     this.employeeForm = this.fb.group({
       id: [''],
@@ -23,6 +28,10 @@ export class AddEmployeeComponent {
       lastName: ['', Validators.required],
       position: ['', Validators.required]
     });
+  }
+
+  getEmployees(){
+    this.employeeService.getEmployees()
   }
 
   onClear() {
@@ -36,6 +45,8 @@ export class AddEmployeeComponent {
         next: (response) => {
           console.log('Utworzono pracownika:', response);
           this.employeeForm.reset();
+          // this.router.navigate(['/employee']);
+          this.dialogRef.close();
         },
         error: (error) => {
           console.error('Błąd podczas tworzenia pracownika:', error);
@@ -44,5 +55,16 @@ export class AddEmployeeComponent {
     }
   }
 
+  ngOnInit(): void {
+    if (this.data) {
+      // wypełnienie formularza danymi pracownika
+      this.employeeForm.setValue({
+        $key: this.data.id,
+        name: this.data.name,
+        lastName: this.data.lastName,
+        position: this.data.position
+      });
+    }
+  }
 
 }

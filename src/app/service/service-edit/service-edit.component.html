@@ -1,0 +1,62 @@
+<div>
+  <div class="continer mt-5">
+    <div class="card">
+      <div class="card-header">
+        <h4>Edycja usługi
+          <a routerLink="/service" class="btn btn-danger float-end">Wróć</a>
+        </h4>
+      </div>
+      <div class="card-body">
+        <div *ngIf="isLoading; else elseForm">
+          <app-loader :title="loadingTitle"></app-loader>
+        </div>
+        <ng-template #elseForm>
+          <form (ngSubmit)="updateService()">
+            <div *ngIf="service">
+              <div class="mb-3">
+                <label>Nazwa usługi</label>
+                <input type="text" [(ngModel)]="service.serviceName" name="serviceName" class="form-control" required>
+                <span class="text-danger" *ngIf="!service.serviceName">Pole jest wymagane. Podaj nazwę usługi.</span>
+              </div>
+              <div class="mb-3">
+                <label>Czas naprawy</label>
+                <input type="text" [(ngModel)]="service.repairTime" name="repairTime" class="form-control" required>
+                <span class="text-danger" *ngIf="!service.repairTime">Pole jest wymagane. Wprowadź przybliżony czas naprawy.</span>
+              </div>
+              <div class="mb-3">
+                <label>Gwarancja</label>
+                <input type="text" [(ngModel)]="service.guarantee" name="guarantee" class="form-control" required>
+                <span class="text-danger"
+                      *ngIf="!service.guarantee">Pole jest wymagane. Wprowadź okres gwarancji.</span>
+              </div>
+              <div class="mb-3">
+                <label>Cena usługi</label>
+                <input type="number" step="any" [(ngModel)]="service.price" name="price" class="form-control" required>
+                <span class="text-danger" *ngIf="!service.price">Pole jest wymagane. Podaj cenę usługi.</span>
+              </div>
+              <div class="mb-3">
+                <label>Cena części</label>
+                <input type="number" step="any" [(ngModel)]="service.priceParts" name="priceParts" class="form-control"
+                       required>
+                <span class="text-danger" *ngIf="!service.priceParts">Pole jest wymagane. Podaj cenę części. Domyślnie 0.</span>
+              </div>
+              <div class="mb-3">
+                <label>Komentarz</label>
+                <input type="text" [(ngModel)]="service.comment" name="comment" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label>Objawy</label>
+                <input type="text" [(ngModel)]="service.symptoms" name="symptoms" class="form-control" required>
+                <span class="text-danger" *ngIf="!service.symptoms">Pole jest wymagane. Wprowadź objawy.</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <button type="submit" class="btn btn-primary">Zaktualizuj</button>
+            </div>
+          </form>
+        </ng-template>
+
+      </div>
+    </div>
+  </div>
+</div>

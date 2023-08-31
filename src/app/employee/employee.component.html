@@ -17,7 +17,6 @@
     </li>
   </ul>
 </div>
-
 <br>
 <div class="container">
   <div class="row">
@@ -26,7 +25,10 @@
         <div class="card-header align-items-center">
           <h5 class="mb-0">Pracownicy</h5>
           <p class="mb-0 small text-muted">Ilość pracowników: <b>{{employees?.length}}</b></p>
-          <p align="right"><a class="btn btn-outline-success" href="add-employee">Dodaj pracownika</a></p>
+          <p align="right">
+            <button class="btn btn-outline-success" (click)="openAddEmployeeDialog()">Dodaj pracownika</button>
+          </p>
+
         </div>
         <div class="table-responsive">
           <table class="table mb-0">
@@ -39,21 +41,18 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let employee of employees" class="align-middle">
-              <td>#{{employee.id}}</td>
-              <td>{{employee.lastName}} {{employee.name}}</td>
-              <td>{{employee.position}}</td>
+            <tr *ngFor="let emp of employees" class="align-middle">
+              <td>#{{emp.id}}</td>
+              <td>{{emp.lastName}} {{emp.name}}</td>
+              <td>{{emp.position}}</td>
               <td>
-
-                <!--                <a href="#!" class="btn btn btn-light" data-toggle="modal" data-target="#service-form-modal">Edytuj</a>-->
-                <!--                <a href="#!" class="btn btn btn-light">Usuń</a>-->
-                <a href="#" class="table-link">
-									<span class="fa-stack">
-										<i class="fa fa-square fa-stack-2x"></i>
-										<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-									</span>
+                <a (click)="openEditEmployeeDialog(emp)" class="table-link">
+                    <span class="fa-stack">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                    </span>
                 </a>
-                <a href="#" class="table-link danger">
+                <a (click)="deleteEmployee(emp.id)" class="table-link danger">
 									<span class="fa-stack">
 										<i class="fa fa-square fa-stack-2x"></i>
 										<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
@@ -66,7 +65,9 @@
           </table>
         </div>
         <div class="card-footer text-end">
-          <a class="btn btn-outline-success" href="add-employee">Dodaj pracownika</a>
+          <p align="right">
+            <button class="btn btn-outline-success" (click)="openAddEmployeeDialog()">Dodaj pracownika</button>
+          </p>
         </div>
       </div>
     </div>
