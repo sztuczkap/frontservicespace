@@ -26,6 +26,28 @@ export class OrderComponent implements OnInit {
       })
   }
 
+  public deleteOrder(orderId: number): void {
+    this.catalogOrder.deleteOrder(orderId).subscribe(
+      (response) => {
+        console.log('Zlecenie zostało usunięte:', response);
+        // Przeładuj stronę po usunięciu
+        window.location.reload();
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Błąd podczas usuwania zlecenia:', error.message);
+        // Tutaj możesz dodać obsługę błędu, np. wyświetlenie komunikatu o błędzie
+      }
+    );
+  }
+
+
+  public confirmDeleteOrder(orderId: number): void {
+    const result = window.confirm("Czy na pewno chcesz usunąć to zlecenie?");
+    if (result) {
+      this.deleteOrder(orderId);
+    }
+  }
+
   ngOnInit(): void {
     this.getCatalogOrder();
   }

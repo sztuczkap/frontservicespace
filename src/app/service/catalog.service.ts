@@ -33,6 +33,10 @@ export class CatalogService {
   public getCatalogService(): Observable<Service[]> {
     return this.http.get<Service[]>(`${this.apiServerUrl}/catalog`)
   }
+
+  saveOrder(orderData: {  items: any; client: { phone: any; name: any; email: any }; }) {
+    return this.http.post(`${this.apiServerUrl}/orders`, orderData)
+  }
 }
 
 export interface Service {
@@ -44,4 +48,6 @@ export interface Service {
   priceParts: number;
   comment: string;
   symptoms: string;
+
+  getServices(): any;
 }

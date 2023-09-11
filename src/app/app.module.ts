@@ -12,21 +12,19 @@ import {ServiceComponent} from './service/service.component';
 import {EmployeeComponent} from './employee/employee.component';
 import {ClientComponent} from './client/client.component';
 import {OrderComponent} from './order/order.component';
-import {NewOrderComponent} from './new-order/new-order.component';
-import {EmployeeService} from "./employee/employee.service";
 import {ServiceCreateComponent} from './service/service-create/service-create.component';
-import { LoaderComponent } from './loader/loader.component';
-import { ServiceEditComponent } from './service/service-edit/service-edit.component';
-import { ClientEditComponent } from './client/client-edit/client-edit.component';
-import { EmployeeCreateComponent } from './employee/employee-create/employee-create.component';
-import { EmployeeEditComponent } from './employee/employee-edit/employee-edit.component';
-
+import {LoaderComponent} from './loader/loader.component';
+import {ServiceEditComponent} from './service/service-edit/service-edit.component';
+import {ClientEditComponent} from './client/client-edit/client-edit.component';
+import {EmployeeCreateComponent} from './employee/employee-create/employee-create.component';
+import {EmployeeEditComponent} from './employee/employee-edit/employee-edit.component';
+import {OrderCreateComponent} from './order/order-create/order-create.component';
+import { OrderEditComponent } from './order/order-edit/order-edit.component';
 
 
 const routes: Routes = [
-  // {path: '', component: OrderComponent},
+  {path: '', component: OrderCreateComponent},
   // {path: '', redirectTo: 'add-employee', pathMatch: 'full'},
-  {path: 'new-order', component: NewOrderComponent},
   {path: 'order', component: OrderComponent},
   {path: 'client', component: ClientComponent},
   {path: 'service', component: ServiceComponent},
@@ -35,7 +33,8 @@ const routes: Routes = [
   {path: 'catalog/:id', component: ServiceEditComponent},
   {path: 'clients/:id', component: ClientEditComponent},
   {path: 'employee-create', component: EmployeeCreateComponent},
-  {path: 'employees/:id', component:EmployeeEditComponent}
+  {path: 'employees/:id', component: EmployeeEditComponent},
+  {path: 'order-create', component: OrderCreateComponent}
 ]
 
 @NgModule({
@@ -45,13 +44,14 @@ const routes: Routes = [
     EmployeeComponent,
     ClientComponent,
     OrderComponent,
-    NewOrderComponent,
     ServiceCreateComponent,
     LoaderComponent,
     ServiceEditComponent,
     ClientEditComponent,
     EmployeeCreateComponent,
-    EmployeeEditComponent
+    EmployeeEditComponent,
+    OrderCreateComponent,
+    OrderEditComponent
   ],
   imports: [
     BrowserModule,
@@ -59,10 +59,9 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FormsModule,
     MatDialogModule,
-    ReactiveFormsModule,
-
+    ReactiveFormsModule
   ],
-  providers: [EmployeeService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

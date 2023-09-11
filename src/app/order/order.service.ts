@@ -15,6 +15,10 @@ export class OrderService {
   public getCatalogOrder(): Observable<Order[]> {
     return this.http.get<Order[]>(`${this.apiServerUrl}/orders`)
   }
+
+  public deleteOrder(orderId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/orders/${orderId}`);
+  }
 }
 
 export interface Order {

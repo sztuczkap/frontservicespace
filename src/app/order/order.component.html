@@ -1,7 +1,7 @@
 <div class="nav-container">
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link" href="new-order">Nowe zlecenie</a>
+      <a class="nav-link" href="order-create">Nowe zlecenie</a>
     </li>
     <li class="nav-item">
       <a class="nav-link active" href="order">Zlecenia</a>
@@ -27,7 +27,7 @@
         <div class="card-header align-items-center">
           <h5 class="mb-0">Zlecenia</h5>
           <p class="mb-0 small text-muted">Ilość usług: <b>{{orders?.length}}</b></p>
-          <p align="right"><a href="new-order" class="btn btn-outline-success">Dodaj zlecenie</a></p>
+          <p align="right"><a href="order-create" class="btn btn-outline-success">Dodaj zlecenie</a></p>
         </div>
         <div class="table-responsive">
           <table class="table mb-0">
@@ -64,7 +64,7 @@
 										<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
 									</span>
                 </a>
-                <a href="#" class="table-link danger">
+                <a class="table-link danger" (click)="confirmDeleteOrder(order.id)">
 									<span class="fa-stack">
 										<i class="fa fa-square fa-stack-2x"></i>
 										<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
@@ -77,7 +77,7 @@
           </table>
         </div>
         <div class="card-footer text-end">
-          <a href="new-order" class="btn btn-outline-success">Dodaj zlecenie</a>
+          <a href="order-create" class="btn btn-outline-success">Dodaj zlecenie</a>
         </div>
       </div>
     </div>

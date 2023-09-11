@@ -1,0 +1,38 @@
+
+.wrapper {
+  margin: 50px 0px 0 50px;}
+
+.header {
+  font-size: 36px;
+  margin-bottom: 6px;
+}
+.title {
+  margin-top: 0;
+  color: #C4C4C4;
+  margin-bottom: 36px;
+}
+.input-wrapper {
+  margin-bottom: 16px;}
+.input {
+  width: 270px;
+  height: 50px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #C4C4C4;
+  padding: 0 15px;
+  font-family: 'Work Sans', sans-serif;
+}
+::placeholder {
+  color: #C4C4C4;
+}
+.remove {
+  margin-left: 6px;
+  padding: 12px;
+  font-size: 24px;
+  font-weight: 700;
+  color: rgb(56, 56, 56);
+  cursor: pointer;
+}
+
+
+
