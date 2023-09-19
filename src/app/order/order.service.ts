@@ -19,6 +19,21 @@ export class OrderService {
   public deleteOrder(orderId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/orders/${orderId}`);
   }
+
+  public getOrderById(orderId: number): Observable<Order> {
+    return this.http.get<Order>(`${this.apiServerUrl}/orders/${orderId}`);
+  }
+
+  public updateOrder(orderId: number, order: Order): Observable<Order> {
+    return this.http.put<Order>(`${this.apiServerUrl}/orders/${orderId}`, order);
+  }
+
+  public getAvailableServices(): Observable<Service[]> {
+    return this.http.get<Service[]>(`${this.apiServerUrl}/catalog`);
+  }
+
+
+
 }
 
 export interface Order {
@@ -26,7 +41,7 @@ export interface Order {
   status: string;
   items: Items[];
   client: Client;
-  employee: Employee
+  employee?: Employee;
   createdAt: any;
 }
 

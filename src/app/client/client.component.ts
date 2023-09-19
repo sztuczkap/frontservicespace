@@ -17,13 +17,18 @@ export class ClientComponent implements OnInit {
   public getCatalogClient(): void {
     this.clientService.getCatalogClient().subscribe(
       response => {
-        console.log("Got employee list: ");
+        console.log("Got client list: ");
         console.log(response);
-        this.clients = response;
+        this.clients = this.sortClientsByEmail(response);
       },
       (error: HttpErrorResponse) => {
-        console.error(error.message)
-      })
+        console.error(error.message);
+      }
+    );
+  }
+
+  sortClientsByEmail(clients: Client[]): Client[] {
+    return clients.sort((a, b) => a.email.localeCompare(b.email));
   }
 
   ngOnInit(): void {

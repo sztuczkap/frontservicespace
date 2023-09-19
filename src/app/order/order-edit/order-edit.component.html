@@ -1,0 +1,102 @@
+<div class="nav-container">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" href="order">Edycja zlecenia</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="order-create">Nowe zlecenie</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="order">Zlecenia</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="client">Klienci</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="service">Usługi</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="employee">Pracownicy</a>
+    </li>
+  </ul>
+</div>
+<div class="wrapper">
+  <div class="header-wrapper">
+    <h2 class="header">Status usługi:</h2>
+    <p class="title">Zaktualizuj status usługi!</p>
+  </div>
+  <!-- Dodajemy tutaj rozwijaną listę statusów -->
+  <div class="form-group">
+    <label for="orderStatus">Wybierz status:</label>
+    <select class="form-control" id="orderStatus" [(ngModel)]="selectedStatus">
+      <option value="NEW">NEW</option>
+      <option value="IN_PROGRESS">IN_PROGRESS</option>
+      <option value="CANCELLED">CANCELLED</option>
+      <option value="COMPLETED">COMPLETED</option>
+    </select>
+    <button class="btn btn-outline-primary" (click)="updateOrderStatus()">Aktualizuj status</button>
+  </div>
+  <div class="header-wrapper">
+    <h2 class="header">Pracownik:</h2>
+    <p class="title">Wybierz pracownika!</p>
+  </div>
+  <div class="form-group">
+    <label for="employeeSelect">Wybierz pracownika:</label>
+    <select class="form-control" id="employeeSelect" [(ngModel)]="selectedEmployeeId">
+      <option value="" disabled selected>Wybierz pracownika...</option>
+      <option *ngFor="let employee of availableEmployees" [value]="employee.id">
+        {{ employee.name }} {{ employee.lastName }} - {{ employee.position }}
+      </option>
+    </select>
+    <button class="btn btn-outline-primary" (click)="assignEmployeeToOrder()">Zapisz pracownika</button>
+  </div>
+
+  <div class="header-wrapper">
+    <h2 class="header">Dane klienta:</h2>
+    <p class="title">Informacje o kliencie:</p>
+  </div>
+
+  <!-- Wyświetlenie danych klienta -->
+  <div class="client-data-display">
+    <p><strong>Email:</strong> {{ clientDataForm.get('email')?.value }}</p>
+    <p><strong>Imię i nazwisko:</strong> {{ clientDataForm.get('name')?.value }}</p>
+    <p><strong>Telefon:</strong> {{ clientDataForm.get('phone')?.value }}</p>
+  </div>
+
+  <!-- Formularz wyboru usług -->
+  <div class="header-wrapper">
+    <h2 class="header">Lista usług:</h2>
+    <p class="title">Dodaj lub usuń usługi</p>
+  </div>
+  <!--  <pre>{{ availableServices | json }}</pre>-->
+  <!-- Formularz wyboru usług -->
+  <div [formGroup]="itemsForm">
+    <div formArrayName="items">
+      <div class="input-wrapper" *ngFor="let item of items.controls; let i = index">
+        <div class="form-group form-inline align-items-center">
+          <div class="d-flex justify-content-center">
+            <select class="form-control mr-2" [formControlName]="i" (change)="updateTotalPrice()" required>
+              <option value="" disabled selected>Wybierz usługę...</option>
+              <option *ngFor="let service of availableServices" [value]="service.id">
+                {{ service.serviceName }} - Koszt: {{service.price}} zł - Koszt części: {{service.priceParts}} zł
+              </option>
+            </select>
+            <button class="btn btn-outline-danger" (click)="removeItem(i)">Usuń</button>
+          </div>
+          <div *ngIf="items.get(i.toString())?.hasError('required') && items.get(i.toString())?.touched"
+               class="text-danger">Pole wymagane
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-outline-success" (click)="addFirstAvailableService()">+ Dodaj usługę</button>
+  <div class="header-wrapper">
+    <h2 class="header" style="text-align: center;">
+      <span style="color: blue;">Całkowita cena usług: {{ totalPrice }} zł</span>
+    </h2>
+  </div>
+  <div class="d-flex justify-content-center">
+    <button class="btn btn-outline-primary" (click)="saveItems()">Zapisz zlecenie</button>
+  </div>
+</div>

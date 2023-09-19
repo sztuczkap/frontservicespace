@@ -27,6 +27,7 @@
           <h5 class="mb-0">Usługi</h5>
           <p class="mb-0 small text-muted">Ilość usług: <b>{{services?.length}}</b></p>
           <p align="right"><a href="service-create" class="btn btn-outline-success">Dodaj usługę</a></p>
+<!--          <p>Aktualny filterType: {{ filterType }}</p>-->
         </div>
 
         <div class="container">
@@ -39,24 +40,26 @@
                       <div class="col-12">
                         <div class="row no-gutters">
                           <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                            <select class="form-control" id="exampleFormControlSelect1">
-                              <option>Objawy:</option>
-                              <option>Nazwa usługi:</option>
+                            <select [ngModel]="filterType" (change)="handleSelectChange($event)" name="filterType">
+                              <option [value]="'symptoms'">Objawy:</option>
+                              <option [value]="'serviceName'">Nazwa usługi:</option>
                             </select>
+
                           </div>
                           <div class="col-lg-8 col-md-6 col-sm-12 p-0">
-                            <input type="text" placeholder="Szukaj..." class="form-control" id="search" name="search">
+                            <input [(ngModel)]="searchCriteria" (input)="filterServices()" type="text"
+                                   placeholder="Szukaj..." class="form-control" id="search" name="search">
                           </div>
-                          <div class="col-lg-1 col-md-3 col-sm-12 p-0">
-                            <button type="submit" class="btn btn-base">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                   stroke-linejoin="round" class="feather feather-search">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                              </svg>
-                            </button>
-                          </div>
+                          <!--                          <div class="col-lg-1 col-md-3 col-sm-12 p-0">-->
+                          <!--                            <button type="submit" class="btn btn-base">-->
+                          <!--                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"-->
+                          <!--                                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"-->
+                          <!--                                   stroke-linejoin="round" class="feather feather-search">-->
+                          <!--                                <circle cx="11" cy="11" r="8"></circle>-->
+                          <!--                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>-->
+                          <!--                              </svg>-->
+                          <!--                            </button>-->
+                          <!--                          </div>-->
                         </div>
                       </div>
                     </div>

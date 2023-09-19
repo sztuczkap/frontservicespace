@@ -34,7 +34,8 @@ const routes: Routes = [
   {path: 'clients/:id', component: ClientEditComponent},
   {path: 'employee-create', component: EmployeeCreateComponent},
   {path: 'employees/:id', component: EmployeeEditComponent},
-  {path: 'order-create', component: OrderCreateComponent}
+  {path: 'order-create', component: OrderCreateComponent},
+  { path: 'orders/:id', component: OrderEditComponent }
 ]
 
 @NgModule({

@@ -11,6 +11,13 @@ export class ServiceComponent implements OnInit {
 
   services: Service[];
   isLoading: boolean = false;
+  // public searchOption: string = 'Objawy:';
+  // public searchTerm: string = '';
+  public filteredServices: Service[] = [];
+  searchCriteria: string = ''; // Przechowuje aktualną wartość wprowadzoną w pole wyszukiwania
+  filterType: 'serviceName' | 'symptoms' = 'symptoms';
+  allServices: Service[] = [];
+
 
   constructor(private catalogService: CatalogService) {
   }
@@ -28,9 +35,10 @@ export class ServiceComponent implements OnInit {
     this.isLoading = true;
     this.catalogService.getCatalogService().subscribe(
       response => {
-        console.log("Got service list: ");
+        console.log("Otrzymano listę usług: ");
         console.log(response);
-        this.services = response;
+        this.allServices = response.sort((a, b) => a.serviceName.localeCompare(b.serviceName));
+        this.services = [...this.allServices];
         this.isLoading = false;
       },
       (error: HttpErrorResponse) => {
@@ -38,8 +46,30 @@ export class ServiceComponent implements OnInit {
       })
   }
 
+
+  filterServices(): void {
+    console.log(this.filterType, this.searchCriteria);
+    if (this.searchCriteria) {
+      this.services = this.allServices.filter(service =>
+        service[this.filterType].toLowerCase().includes(this.searchCriteria.toLowerCase())
+      );
+    } else {
+      this.services = [...this.allServices];  // Kiedy pole wyszukiwania jest puste, przywróć pełną listę usług
+    }
+  }
+
   ngOnInit(): void {
     this.getCatalogService();
+    this.filteredServices = this.services;
+  }
+
+  onFilterTypeChange(value: any): void {
+    console.log("Zmieniono wartość filterType na:", value);
+  }
+
+  handleSelectChange(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    this.filterType = selectElement.value as 'symptoms' | 'serviceName';
   }
 
 }

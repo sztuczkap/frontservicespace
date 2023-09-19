@@ -28,14 +28,20 @@ export class EmployeeComponent implements OnInit {
   public getCatalogEmployee(): void {
     this.employeeService.getEmployees().subscribe(
       response => {
-        console.log("Got employee list: ");
+        console.log("Otrzymano listę pracowników: ");
         console.log(response);
-        this.employees = response;
+        this.employees = response.sort((a, b) => {
+          // Porównanie nazwisk, a następnie imion w przypadku takich samych nazwisk
+          const comparison = a.lastName.localeCompare(b.lastName, 'pl');
+          return comparison !== 0 ? comparison : a.name.localeCompare(b.name, 'pl');
+        });
       },
       (error: HttpErrorResponse) => {
         console.error(error.message)
-      })
+      }
+    )
   }
+
 
   ngOnInit(): void {
     this.getCatalogEmployee();
